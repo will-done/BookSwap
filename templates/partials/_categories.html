@@ -1,0 +1,23 @@
+
+<form method="GET" action="{% url 'books' %}" class="mb-3">
+  <div class="input-group">
+
+    <input type="text" name="q" class="form-control" placeholder="Search Book..." value="{{ query|default:'' }}">
+
+    <button type="submit" class="btn btn-outline-info">Search</button>
+    
+  </div>
+</form>
+
+
+  
+<div class="list-group">
+    {% for category in categories %}
+        {% if category.slug == selected_category %}
+            <a class="list-group-item list-group-item-action active bg-info text-black" href="{% url 'books_by_category' category.slug  %}">{{ category.name|title }}</a>
+        {% else %}
+            <a class="list-group-item list-group-item-action" href="{% url 'books_by_category' category.slug  %}">{{ category.name|title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+

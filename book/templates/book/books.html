@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} Books {% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <!-- Sol Kategori Menüsü -->
+        <div class="col-3">
+            {% include 'partials/_categories.html' %}
+        </div>
+
+        <!-- Sağ Kitap Listesi -->
+        <div class="col-9">
+            <h1 class="mb-4">All Books</h1>
+
+            <!-- Kullanıcının Kitapları -->
+            <h4 style="color:rgb(153, 38, 202);">📚 My Books</h4>
+            <hr>
+            {% if my_books %}
+                <div class="row mb-4">
+                    {% for book in my_books %}
+                        {% include 'book/partials/_book.html' %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-info">You don't have any books yet.</div>
+            {% endif %}
+
+            <!-- Diğer Kullanıcıların Kitapları -->
+            <h4 class="text-success mt-4">🌍  Books From Other Users</h4>
+            <hr>
+            {% if other_books %}
+                <div class="row">
+                    {% for book in other_books %}
+                        {% include 'book/partials/_book.html' %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-warning">There are no books from other users in the system.</div>
+            {% endif %}
+
+            <!-- Arama/Kategori sonucu bulunamadıysa -->
+            {% if not my_books and not other_books %}
+                <div class="alert alert-warning mt-3">
+                    No books matched your search.
+                    {% if query %}
+                        Search Term: "<strong>{{ query }}</strong>"
+                    {% endif %}
+                    {% if selected_category %}
+                        {% for category in categories %}
+                            {% if category.slug == selected_category %}
+                                | Category: <strong>{{ category.name }}</strong>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

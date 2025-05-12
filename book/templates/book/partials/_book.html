@@ -1,0 +1,21 @@
+<div class="col-md-4 mb-4 d-flex align-items-stretch">
+    <div class="card h-100 w-100 shadow-sm">
+        <a href="{% url 'book_details' book.slug %}">
+            <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 250px; object-fit: contain;">
+        </a>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title mb-2">
+                <a href="{% url 'book_details' book.slug %}" class="text-decoration-none text-dark">
+                    {{ book.title }}
+                </a>
+            </h5>
+            <p class="card-text mb-4">{{ book.description|truncatewords_html:10|safe }}</p>
+
+            <div class="mt-auto">
+                <a href="{% url 'book_details' book.slug %}" class="btn btn-sm w-100" style="background-color: #d8adad; color: white;">
+                    Look At Details
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

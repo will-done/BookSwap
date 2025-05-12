@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">All Trade Offers</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle text-center">
+      <thead class="table-success">
+        <tr>
+          <th>Sender</th>
+          <th>Receiver</th>
+          <th>Sent Book</th>
+          <th>Requested Book</th>
+          <th>Status</th>
+          <th>Admin Approval</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for offer in offers %}
+          <tr>
+            <td>{{ offer.sender.username }}</td>
+            <td>{{ offer.receiver.username }}</td>
+            <td>{{ offer.sender_book.title }}</td>
+            <td>{{ offer.receiver_book.title }}</td>
+            <td>
+              {% if offer.status == 'accepted' %}
+                <span class="badge bg-success">Accepted</span>
+              {% else %}
+                <span class="badge bg-warning text-dark">Pending</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if offer.approved_by_admin %}
+                <span class="badge bg-success">Yes</span>
+              {% else %}
+                <span class="badge bg-secondary">No</span>
+              {% endif %}
+            </td>
+            <td>{{ offer.created_at|date:"d.m.Y H:i" }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="7">There are no trade offers yet.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

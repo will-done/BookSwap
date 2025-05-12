@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+  <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
+    <h2 class="card-title text-center text-primary">{{ book.title }} - Send Trade Offer</h2>
+    <p class="text-center mb-4">Select another book to trade with this one.</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="receiver_book_id" class="form-label">Book You Want to Trade:</label>
+        <select class="form-select" id="receiver_book_id" name="receiver_book_id">
+          {% for book in available_books %}
+            <option value="{{ book.id }}">{{ book.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Send Trade Offer</button>
+    </form>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'books' %}" class="text-decoration-none text-secondary">← Go Back</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
