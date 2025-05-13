@@ -46,19 +46,19 @@ This project is a web-based platform that allows users to exchange books with ea
 ### 🔁 Trade Offer Page
 ![All Trade Offers](screenshots/all-trade-offers.png)
 
-### 🏠 Homepage
+### 🏠 Register
 ![Register](screenshots/register.png)
 
-### ➕ Add a New Book
+### ➕ Login
 ![Login](screenshots/login.png)
 
-### 🔁 Trade Offer Page
+### 🔁 My Trade Offer Page
 ![My Trade Offer](screenshots/my-trade-offer.png)
 
-### 🏠 Homepage
+### 🏠 Book Details
 ![Book Details](screenshots/book-details.png)
 
-### ➕ Add a New Book
+### ➕ Book Search
 ![Book Search](screenshots/book-search.png)
 
 
